@@ -7,10 +7,10 @@ set -euo pipefail # safer Bash: fail on errors/unset vars/pipelines
 export CSVKIT_FIELD_SIZE_LIMIT=$((1024 * 1024 * 1024))
 INGREDIENT=""; DATA_DIR=""; CSV=""
 usage() {
-echo "Usage: $0 -i \"<ingredient>\" -d /path/to/folder"
-echo " -i ingredient to search (case-insensitive)"
-echo " -d folder containing products.csv (tab-separated)"
-echo " -h show help"
+    echo "Usage: $0 -i \"<ingredient>\" -d /path/to/folder"
+    echo " -i ingredient to search (case-insensitive)"
+    echo " -d folder containing products.csv (tab-separated)"   
+    echo " -h show help"
 }
 # Parse flags (getopts)
 while getopts ":i:d:h" opt; do
@@ -45,6 +45,6 @@ csvcut -t -c ingredients_text,product_name,code "$tmp_csv" \
 count="$(wc -l < "$tmp_matches" | tr -d ' ')"
 echo "----"
 echo "Found ${count} product(s) containing: \"${INGREDIENT}\""
-5/8
+
 # cleanup
 rm -f "$tmp_csv" "$tmp_matches"
